@@ -6,8 +6,8 @@ type LogoProps = {
 
 /**
  * Премиальный фирменный знак AUDIT D.
- * Идеальная геометрическая буква D с лаконичным внутренним золотым вектором,
- * символизирующим точность финансового аудита и рост бизнеса.
+ * Идеальная геометрическая буква D с лаконичным внутренним золотым графиком,
+ * символизирующим точность финансового аудита и непрерывный рост.
  */
 export function LogoMark({
   tone = "light",
@@ -28,7 +28,7 @@ export function LogoMark({
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      {/* Идеальный внешний контур буквы D (символ стабильности) */}
+      {/* Идеальный внешний контур буквы D */}
       <path 
         d="M12 9H24C32.2843 9 39 15.7157 39 24C39 32.2843 32.2843 39 24 39H12V9Z" 
         stroke={primary} 
@@ -36,30 +36,15 @@ export function LogoMark({
         strokeLinejoin="round"
       />
 
-      {/* Золотой вектор аудита (чистая линия графика с точкой-маркером роста) */}
-      <path 
-        d="M18 27L24 21L31 26" 
-        stroke={accent} 
-        strokeWidth="3" 
-        strokeLinecap="round" 
-        strokeLinejoin="round"
-      />
-      <circle cx="31" cy="26" r="2" fill={accent} />
+      {/* Три чистых столбика графика внутри, растущие слева направо */}
+      {/* Первый столбик (основной цвет) */}
+      <rect x="17" y="25" width="3" height="7" rx="1" fill={primary} />
       
-      <path 
-        d="M24 21L30 15" 
-        stroke={accent} 
-        strokeWidth="3" 
-        strokeLinecap="round" 
-        strokeLinejoin="round"
-      />
-      <path 
-        d="M25 15H30V20" 
-        stroke={accent} 
-        strokeWidth="3" 
-        strokeLinecap="round" 
-        strokeLinejoin="round"
-      />
+      {/* Второй столбик (основной цвет, повыше) */}
+      <rect x="22" y="21" width="3" height="11" rx="1" fill={primary} />
+      
+      {/* Третий столбик (золотой акцентный, самый высокий — пик роста) */}
+      <rect x="27" y="16" width="3" height="16" rx="1" fill={accent} />
     </svg>
   );
 }
