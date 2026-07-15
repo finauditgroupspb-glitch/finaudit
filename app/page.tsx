@@ -52,7 +52,7 @@ export default function HomePage() {
               <span className="text-shimmer"> по договору</span>
             </h1>
             <p className="hero-up hero-up-3 mt-7 max-w-xl text-lg leading-relaxed text-silver/90">
-              FinAudit Group — команда аудиторов, бухгалтеров, налоговых консультантов и юристов.
+              AUDIT D — команда аудиторов, бухгалтеров, налоговых консультантов и юристов.
               Сопровождаем бизнес в России и странах СНГ: от ИП до групп компаний.
             </p>
             <div className="hero-up hero-up-4 mt-10 flex flex-col gap-4 sm:flex-row">
