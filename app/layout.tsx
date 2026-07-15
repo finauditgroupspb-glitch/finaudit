@@ -11,8 +11,8 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "FinAudit Group — аудит, бухгалтерия и налоговый консалтинг для бизнеса",
-    template: "%s — FinAudit Group",
+    default: "АУДИТ Д — аудит, бухгалтерия и налоговый консалтинг для бизнеса",
+    template: "%s — AUDIT D",
   },
   description: site.description,
   keywords: [
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "налоговый консалтинг",
     "юридическое сопровождение бизнеса",
     "аудиторская компания",
-    "FinAudit Group",
+    "AUDIT D",
   ],
   alternates: { canonical: "/" },
   icons: { icon: "/favicon.svg" },
@@ -30,12 +30,12 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     url: site.url,
     siteName: site.name,
-    title: "FinAudit Group — аудит, бухгалтерия и налоговый консалтинг",
+    title: "AUDIT D — аудит, бухгалтерия и налоговый консалтинг",
     description: site.description,
   },
   twitter: {
     card: "summary",
-    title: "FinAudit Group",
+    title: "AUDIT D",
     description: site.description,
   },
   robots: { index: true, follow: true },
