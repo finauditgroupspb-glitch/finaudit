@@ -26,7 +26,7 @@ export default function Preloader() {
           <path className="preloader-diag" d="M9 37.5 L33.5 15 L37 18.8 L12.5 41.3 Z" fill="#B8963E" />
         </svg>
         <div className="preloader-bar" />
-        <p className="preloader-word">FinAudit Group</p>
+        <p className="preloader-word">AUDIT D</p>
       </div>
     </div>
   );
