@@ -6,9 +6,7 @@ type LogoProps = {
 
 /**
  * Фирменный знак AUDIT D.
- * Монограмма построена на пересечении букв F и A:
- * вертикаль и верхняя перекладина образуют F,
- * золотая восходящая диагональ — перекладину A и вектор роста.
+ * Минималистичный график роста показателей и аудита.
  */
 export function LogoMark({
   tone = "light",
@@ -27,10 +25,18 @@ export function LogoMark({
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      <rect x="9" y="6" width="5" height="36" fill={primary} />
-      <rect x="9" y="6" width="27" height="5" fill={primary} />
-      <path d="M9 37.5 L33.5 15 L37 18.8 L12.5 41.3 Z" fill="#B8963E" />
-      <rect x="31" y="6" width="5" height="11" fill={primary} opacity="0.45" />
+      {/* Сетка графика на фоне */}
+      <rect x="6" y="38" width="36" height="2" rx="1" fill={primary} opacity="0.3" />
+      <rect x="6" y="10" width="2" height="30" rx="1" fill={primary} opacity="0.3" />
+      
+      {/* Столбцы показателей */}
+      <rect x="12" y="26" width="4" height="12" rx="1" fill={primary} />
+      <rect x="20" y="18" width="4" height="20" rx="1" fill={primary} />
+      <rect x="28" y="12" width="4" height="26" rx="1" fill="#B8963E" />
+      
+      {/* Стрелка роста вверх */}
+      <path d="M14 28L22 16L30 10L38 15" stroke="#B8963E" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M32 10H38V16" stroke="#B8963E" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -44,10 +50,10 @@ export default function Logo({ variant = "dark", compact = false, className = ""
       {!compact && (
         <span className="flex flex-col leading-none">
           <span className={`text-[1.15rem] font-extrabold tracking-tight ${text}`}>
-            FinAudit
+            AUDIT D
           </span>
           <span className={`mt-1 text-[0.62rem] font-semibold uppercase tracking-caps ${sub}`}>
-            Group
+            ООО
           </span>
         </span>
       )}
