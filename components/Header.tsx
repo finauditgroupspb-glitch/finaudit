@@ -58,7 +58,7 @@ export default function Header() {
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${shell}`}>
       <div className="mx-auto flex h-[76px] max-w-site items-center justify-between gap-6 px-5 lg:px-8">
-        <Link href="/" aria-label="FinAudit Group — на главную" className="group shrink-0 transition-transform duration-300 hover:scale-[1.03]">
+        <Link href="/" aria-label="AUDIT D — на главную" className="group shrink-0 transition-transform duration-300 hover:scale-[1.03]">
           <Logo variant={overHero ? "light" : "dark"} />
         </Link>
 
