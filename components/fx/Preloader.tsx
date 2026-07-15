@@ -1,8 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
-import Logo from "@/components/Logo"; // Импортируем ваш новый компонент логотипа
+import Logo from "@/components/Logo";
 
+/**
+ * Премиальный экран загрузки:
+ * Показывает логотип, убирает атрибут data-intro через 1.9с.
+ */
 export default function Preloader() {
   useEffect(() => {
     const t = window.setTimeout(() => {
@@ -14,9 +18,9 @@ export default function Preloader() {
   return (
     <div className="preloader" aria-hidden="true">
       <div className="flex flex-col items-center">
-        {/* Заменили старый SVG на новый компонент Logo */}
+        {/* Масштабируем логотип через класс, без передачи параметра size */}
         <div className="mb-6 scale-110">
-          <Logo variant="light" size={72} />
+          <Logo variant="light" />
         </div>
         
         <div className="preloader-bar" />
