@@ -5,9 +5,9 @@ type LogoProps = {
 };
 
 /**
- * Премиальный фирменный знак AUDIT D.
- * Идеальная геометрическая буква D с лаконичным внутренним золотым графиком,
- * символизирующим точность финансового аудита и непрерывный рост.
+ * Фирменный знак AUDIT D.
+ * Высокохудожественная монограмма "AD": 
+ * Изящная классическая "A" с засечками и переплетенная с ней золотая "D".
  */
 export function LogoMark({
   tone = "light",
@@ -23,51 +23,101 @@ export function LogoMark({
     <svg
       width={size}
       height={size}
-      viewBox="0 0 48 48"
+      viewBox="0 0 100 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      {/* Идеальный внешний контур буквы D */}
-      <path 
-        d="M12 9H24C32.2843 9 39 15.7157 39 24C39 32.2843 32.2843 39 24 39H12V9Z" 
-        stroke={primary} 
-        strokeWidth="3.5" 
+      {/* Буква "A" (классическая, с тонкими и толстыми линиями и засечками) */}
+      <g>
+        {/* Левый тонкий штрих А */}
+        <path
+          d="M 40 75 L 53 31"
+          stroke={primary}
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+        {/* Правый мощный штрих А (с расширением книзу) */}
+        <path
+          d="M 51.5 29 L 66.5 73.5"
+          stroke={primary}
+          strokeWidth="7.5"
+          strokeLinecap="round"
+        />
+        {/* Горизонтальный перешеек А */}
+        <path
+          d="M 43.5 61 H 58.5"
+          stroke={primary}
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+        {/* Нижняя левая засечка А */}
+        <path
+          d="M 35 75 H 45"
+          stroke={primary}
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+        {/* Нижняя правая засечка А */}
+        <path
+          d="M 60 75 H 72"
+          stroke={primary}
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+        {/* Верхняя засечка А */}
+        <path
+          d="M 48 31 H 55"
+          stroke={primary}
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </g>
+
+      {/* Золотая буква "D" (изящная округлая арка, переплетающаяся с А) */}
+      <path
+        d="M 52.5 35 C 57 35 78 35 78 54.5 C 78 71.5 59.5 74.5 54.5 74.5"
+        stroke={accent}
+        strokeWidth="4.5"
+        strokeLinecap="round"
         strokeLinejoin="round"
       />
-
-      {/* Три чистых столбика графика внутри, растущие слева направо */}
-      {/* Первый столбик (основной цвет) */}
-      <rect x="17" y="25" width="3" height="7" rx="1" fill={primary} />
-      
-      {/* Второй столбик (основной цвет, повыше) */}
-      <rect x="22" y="21" width="3" height="11" rx="1" fill={primary} />
-      
-      {/* Третий столбик (золотой акцентный, самый высокий — пик роста) */}
-      <rect x="27" y="16" width="3" height="16" rx="1" fill={accent} />
+      {/* Верхний декоративный хвостик D */}
+      <path
+        d="M 48 37 C 50 35.5 53 35 56 35"
+        stroke={accent}
+        strokeWidth="3.5"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
 
 export default function Logo({ variant = "dark", compact = false, className = "" }: LogoProps) {
-  const text = variant === "light" ? "text-white" : "text-navy";
-  const sub = variant === "light" ? "text-silver/80" : "text-graphite/70";
+  const text = variant === "light" ? "text-white" : "text-[#0B1D33]";
+  const sub = variant === "light" ? "text-silver/80" : "text-[#B8963E]";
 
   return (
-    <span className={`inline-flex items-center gap-3.5 ${className}`}>
-      {/* Логознак */}
-      <LogoMark tone={variant === "light" ? "light" : "dark"} size={compact ? 34 : 40} />
+    <span className={`inline-flex items-center gap-2 ${className}`}>
+      {/* Логознак (монограмма AD) */}
+      <LogoMark tone={variant === "light" ? "light" : "dark"} size={compact ? 44 : 54} />
       
       {/* Текстовая часть */}
       {!compact && (
-        <span className="flex flex-col leading-none">
-          <span className={`text-[1.25rem] font-black tracking-tight ${text}`}>
-            AUDIT <span className="text-[#B8963E]">D</span> {/* Стильная золотая D */}
+        <span className="flex flex-col justify-center select-none" style={{ fontFamily: 'Georgia, serif' }}>
+          {/* Главное название (Элегантный serif-шрифт) */}
+          <span className={`text-[1.35rem] font-medium tracking-[0.05em] leading-tight ${text}`}>
+            AUDIT D
           </span>
-          <span className={`mt-1.5 text-[0.65rem] font-bold uppercase tracking-caps ${sub}`}>
-            ООО
+          {/* Подзаголовок (Золотой, с большим межбуквенным интервалом) */}
+          <span className={`text-[0.55rem] font-semibold uppercase tracking-[0.22em] leading-none mt-1 ${sub}`}>
+            AUDIT COMPANY
           </span>
         </span>
+      )}
+    </span>
+  );
+}
       )}
     </span>
   );
