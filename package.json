@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "@fontsource-variable/manrope": "5.2.8",
-    "next": "16.2.10",
-    "react": "19.2.7",
-    "react-dom": "19.2.7",
-    "three": "0.180.0"
+    "next": "16.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "three": "0.18.0"
   },
   "devDependencies": {
     "@types/node": "22.15.30",
