@@ -45,6 +45,7 @@ const securityHeaders = [
 ];
 
 const nextConfig = {
+  output: "export",
   reactStrictMode: true,
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
