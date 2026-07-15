@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import { TelegramIcon } from "@/components/Header";
@@ -19,7 +21,7 @@ export default function Footer() {
         <div className="mx-auto max-w-site px-5 pb-10 pt-16 lg:px-8 lg:pt-20">
           <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
             <div>
-              <Link href="/" aria-label="FinAudit Group — на главную" className="inline-block transition-transform duration-300 hover:scale-[1.03]">
+              <Link href="/" aria-label="AUDIT D — на главную" className="inline-block transition-transform duration-300 hover:scale-[1.03]">
                 <Logo variant="light" />
               </Link>
               <p className="mt-6 max-w-xs text-[0.92rem] leading-relaxed text-silver/80">
@@ -85,9 +87,9 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Фоновый водяной знак */}
+        {/* Обновленный фоновый водяной знак под новый бренд */}
         <div className="pointer-events-none select-none overflow-hidden" aria-hidden="true">
-          <p className="footer-mark mx-auto max-w-site translate-y-[18%] px-5 lg:px-8">FINAUDIT</p>
+          <p className="footer-mark mx-auto max-w-site translate-y-[18%] px-5 lg:px-8 tracking-[0.12em]">AUDIT D</p>
         </div>
 
         <div className="mx-auto max-w-site px-5 lg:px-8">
