@@ -20,7 +20,7 @@ export const company = {
 } as const;
 
 export const site = {
-  name: "FinAudit Group",
+  name: "AUDIT D",
   legalName: company.shortName,
   url: "https://finauditgroup.example",
   description:
