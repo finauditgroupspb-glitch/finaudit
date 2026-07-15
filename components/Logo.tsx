@@ -107,17 +107,13 @@ export default function Logo({ variant = "dark", compact = false, className = ""
         <span className="flex flex-col justify-center select-none" style={{ fontFamily: 'Georgia, serif' }}>
           {/* Главное название (Элегантный serif-шрифт) */}
           <span className={`text-[1.35rem] font-medium tracking-[0.05em] leading-tight ${text}`}>
-            AUDIT D
+            AUDIT <span className="text-[#B8963E]">D</span>
           </span>
           {/* Подзаголовок (Золотой, с большим межбуквенным интервалом) */}
           <span className={`text-[0.55rem] font-semibold uppercase tracking-[0.22em] leading-none mt-1 ${sub}`}>
             AUDIT COMPANY
           </span>
         </span>
-      )}
-    </span>
-  );
-}
       )}
     </span>
   );
