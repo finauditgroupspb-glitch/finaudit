@@ -87,7 +87,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Обновленный фоновый водяной знак под новый бренд */}
+        {/* Водяной знак исправлен на AUDIT D */}
         <div className="pointer-events-none select-none overflow-hidden" aria-hidden="true">
           <p className="footer-mark mx-auto max-w-site translate-y-[18%] px-5 lg:px-8 tracking-[0.12em]">AUDIT D</p>
         </div>
