@@ -21,7 +21,7 @@ export function generateMetadata({ params }: Props): Metadata {
     title: service.name,
     description: service.short,
     alternates: { canonical: `/services/${service.slug}` },
-    openGraph: { title: `${service.name} — FinAudit Group`, description: service.short },
+    openGraph: { title: `${service.name} — AUDIT D`, description: service.short },
   };
 }
 

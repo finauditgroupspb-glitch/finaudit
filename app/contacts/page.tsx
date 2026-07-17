@@ -9,7 +9,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Контакты",
   description:
-    "Свяжитесь с FinAudit Group: телефон, email, Telegram. Бесплатная первичная консультация для компаний и предпринимателей.",
+    "Свяжитесь с AUDIT D: телефон, email, Telegram. Бесплатная первичная консультация для компаний и предпринимателей.",
   alternates: { canonical: "/contacts" },
 };
 
@@ -42,7 +42,7 @@ export default function ContactsPage() {
                   aria-hidden="true"
                 />
                 <div className="relative flex flex-1 flex-col">
-                  <p className="eyebrow-line text-[0.74rem] font-bold uppercase tracking-caps text-gold-light">FinAudit Group</p>
+                  <p className="eyebrow-line text-[0.74rem] font-bold uppercase tracking-caps text-gold-light">AUDIT D</p>
 
                   <div className="mt-8 space-y-8">
                     <div>
@@ -50,7 +50,7 @@ export default function ContactsPage() {
                       <a href={site.phoneHref} className="mt-1 block text-3xl font-extrabold tracking-tight transition-colors hover:text-gold-light md:text-4xl">
                         {site.phone}
                       </a>
-                      <p className="mt-1.5 text-[0.84rem] text-silver/70">{site.workHours}. На мобильном номер откроет звонок.</p>
+                      <p className="mt-1.5 text-[0.84rem] text-silver/70">{site.workHours}. Нажмите на номер, чтобы позвонить.</p>
                     </div>
 
                     <div>

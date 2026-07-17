@@ -10,7 +10,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Вакансии",
   description:
-    "Работа в FinAudit Group: вакансии в Санкт-Петербурге и Москве, включая курьера по доставке документов в московский филиал.",
+    "Работа в AUDIT D: вакансии в Санкт-Петербурге и Москве, включая курьера по доставке документов в московский филиал.",
   alternates: { canonical: "/vacancies" },
 };
 

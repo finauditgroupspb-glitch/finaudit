@@ -6,7 +6,7 @@ import { posts } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Блог",
   description:
-    "Статьи FinAudit Group об аудите, налогах, бухгалтерии и управленческом учёте — простым языком для собственников и руководителей.",
+    "Статьи AUDIT D об аудите, налогах, бухгалтерии и управленческом учёте — простым языком для собственников и руководителей.",
   alternates: { canonical: "/blog" },
 };
 

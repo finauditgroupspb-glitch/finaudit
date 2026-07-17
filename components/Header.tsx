@@ -150,7 +150,7 @@ export default function Header() {
           </a>
           <a
             href={site.phoneHref}
-            className={`flex items-center gap-2 text-[0.92rem] font-bold tabular-nums transition-colors ${
+            className={`flex items-center gap-2 whitespace-nowrap text-[0.92rem] font-bold tabular-nums transition-colors ${
               overHero ? "text-white hover:text-gold-light" : "text-navy hover:text-gold"
             }`}
           >

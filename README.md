@@ -1,4 +1,4 @@
-# FinAudit Group — корпоративный сайт
+# AUDIT D — корпоративный сайт
 
 Многостраничный корпоративный сайт на **Next.js 16 + React 19 + TypeScript + TailwindCSS**. Интерфейс — на русском языке.
 
@@ -51,7 +51,7 @@ npm run security:audit
 Найдите строку:
 
 ```ts
-const contactPhone = "+7 (983) 096-57-86";
+const contactPhone = "+7 (913) 018-02-23";
 ```
 
 Замените только значение номера, например:

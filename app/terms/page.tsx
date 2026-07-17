@@ -4,7 +4,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Пользовательское соглашение",
-  description: "Условия использования сайта FinAudit Group.",
+  description: "Условия использования сайта AUDIT D.",
   alternates: { canonical: "/terms" },
   robots: { index: false },
 };
@@ -13,7 +13,7 @@ const sections = [
   {
     h: "1. Предмет соглашения",
     p: [
-      "Настоящее соглашение регулирует порядок использования сайта FinAudit Group. Получая доступ к сайту, вы принимаете условия соглашения в полном объёме. Если вы не согласны с условиями, пожалуйста, не используйте сайт.",
+      "Настоящее соглашение регулирует порядок использования сайта AUDIT D. Получая доступ к сайту, вы принимаете условия соглашения в полном объёме. Если вы не согласны с условиями, пожалуйста, не используйте сайт.",
     ],
   },
   {
@@ -46,7 +46,7 @@ const sections = [
 export default function TermsPage() {
   return (
     <>
-      <PageHero variant="calm" eyebrow="Документы" title="Пользовательское соглашение" lead="Условия использования сайта и материалов FinAudit Group." />
+      <PageHero variant="calm" eyebrow="Документы" title="Пользовательское соглашение" lead="Условия использования сайта и материалов AUDIT D." />
       <section className="bg-white py-16 lg:py-24">
         <div className="mx-auto max-w-3xl space-y-10 px-5 lg:px-8">
           {sections.map((s) => (

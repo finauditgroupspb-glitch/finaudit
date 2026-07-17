@@ -179,7 +179,7 @@ export default function HomePage() {
               Работаем так, как хотели бы, чтобы работали с нашим бизнесом
             </h2>
             <p className="mt-5 text-[1.02rem] leading-relaxed text-graphite/85">
-              FinAudit Group выросла из частной аудиторской практики. Мы видели сотни компаний,
+              Компания AUDIT D выросла из частной аудиторской практики. Мы видели сотни компаний,
               где учёт был «чёрным ящиком» для собственника, — и построили компанию, которая делает наоборот:
               прозрачные отчёты, зафиксированная ответственность и прямая связь с экспертом, а не с колл-центром.
             </p>
@@ -204,7 +204,7 @@ export default function HomePage() {
                     «Цифрам, которые мы подписываем, должно быть можно верить. Всё остальное — производное от этого».
                   </p>
                   <div className="mt-8 h-px w-16 bg-gold" aria-hidden="true" />
-                  <p className="mt-5 text-[0.9rem] text-silver/85">Партнёры FinAudit Group</p>
+                  <p className="mt-5 text-[0.9rem] text-silver/85">Партнёры AUDIT D</p>
                 </div>
               </div>
             </div>

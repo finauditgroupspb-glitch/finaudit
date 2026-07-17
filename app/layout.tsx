@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "AUDIT D",
   ],
   alternates: { canonical: "/" },
-  icons: { icon: "/favicon.svg" },
+  icons: { icon: "/favicon.svg?v=2" },
   openGraph: {
     type: "website",
     locale: "ru_RU",

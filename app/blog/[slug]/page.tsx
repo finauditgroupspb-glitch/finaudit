@@ -64,7 +64,7 @@ export default function BlogPostPage({ params }: Props) {
               <span aria-hidden="true">·</span>
               <span>{post.readingTime} чтения</span>
               <span aria-hidden="true">·</span>
-              <span>Команда FinAudit Group</span>
+              <span>Команда AUDIT D</span>
             </div>
           </div>
         </header>

@@ -7,7 +7,7 @@ import { industries } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Отрасли",
   description:
-    "Отраслевая экспертиза FinAudit Group: торговля и e-commerce, строительство, IT, производство, услуги и внешнеэкономическая деятельность.",
+    "Отраслевая экспертиза AUDIT D: торговля и e-commerce, строительство, IT, производство, услуги и внешнеэкономическая деятельность.",
   alternates: { canonical: "/industries" },
 };
 
