@@ -1,13 +1,19 @@
 // Cloudflare Pages Function: приём заявок с формы сайта.
 // Деплоится автоматически вместе с сайтом (папка functions/).
 //
-// Обязательные переменные окружения (Cloudflare Pages → Settings → Environment variables):
-//   Вариант 1: TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID — доставка заявок в Telegram.
-//   Вариант 2: CONTACT_WEBHOOK_URL (+ CONTACT_WEBHOOK_TOKEN) — доставка на ваш webhook/CRM.
+// Способы доставки (Cloudflare Pages → Settings → Environment variables),
+// работают одновременно — заявка уходит во все настроенные каналы:
+//   Почта:    RESEND_API_KEY + CONTACT_EMAIL_TO (куда слать)
+//             + опционально CONTACT_EMAIL_FROM (адрес отправителя на своём домене)
+//   Telegram: TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID
+//   Webhook:  CONTACT_WEBHOOK_URL (+ CONTACT_WEBHOOK_TOKEN)
 //   Опционально: ALLOWED_ORIGINS — список разрешённых origin через запятую.
 // Без настроенного способа доставки функция честно возвращает ошибку.
 
 type Env = {
+  RESEND_API_KEY?: string;
+  CONTACT_EMAIL_TO?: string;
+  CONTACT_EMAIL_FROM?: string;
   TELEGRAM_BOT_TOKEN?: string;
   TELEGRAM_CHAT_ID?: string;
   CONTACT_WEBHOOK_URL?: string;
@@ -79,34 +85,73 @@ export const onRequestPost = async ({ request, env }: PagesContext): Promise<Res
     .filter(Boolean)
     .join("\n");
 
-  // Вариант 1: собственный webhook / CRM.
-  if (env.CONTACT_WEBHOOK_URL) {
-    const res = await fetch(env.CONTACT_WEBHOOK_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        ...(env.CONTACT_WEBHOOK_TOKEN
-          ? { Authorization: `Bearer ${env.CONTACT_WEBHOOK_TOKEN}` }
-          : {}),
-      },
-      body: JSON.stringify({ topic, name, phone, email, message }),
-    });
-    return res.ok ? json(200, { ok: true }) : json(502, { ok: false, error: "delivery" });
+  // Заявка отправляется во все настроенные каналы; успех — если доставил хотя бы один.
+  const deliveries: Promise<boolean>[] = [];
+
+  // Почта через Resend.
+  if (env.RESEND_API_KEY && env.CONTACT_EMAIL_TO) {
+    const esc = (s: string) =>
+      s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const html = [
+      `<h2 style="margin:0 0 16px">${esc(topic)}</h2>`,
+      `<p><b>Имя:</b> ${esc(name)}</p>`,
+      `<p><b>Телефон:</b> ${esc(phone)}</p>`,
+      email ? `<p><b>Email:</b> ${esc(email)}</p>` : "",
+      message ? `<p><b>Задача:</b><br>${esc(message).replace(/\n/g, "<br>")}</p>` : "",
+    ].join("");
+    deliveries.push(
+      fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        },
+        body: JSON.stringify({
+          from: env.CONTACT_EMAIL_FROM ?? "Заявки с сайта <onboarding@resend.dev>",
+          to: env.CONTACT_EMAIL_TO.split(",").map((s) => s.trim()),
+          reply_to: email || undefined,
+          subject: `${topic} — ${name}, ${phone}`,
+          html,
+          text,
+        }),
+      }).then((r) => r.ok, () => false)
+    );
   }
 
-  // Вариант 2: Telegram Bot API.
+  // Собственный webhook / CRM.
+  if (env.CONTACT_WEBHOOK_URL) {
+    deliveries.push(
+      fetch(env.CONTACT_WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(env.CONTACT_WEBHOOK_TOKEN
+            ? { Authorization: `Bearer ${env.CONTACT_WEBHOOK_TOKEN}` }
+            : {}),
+        },
+        body: JSON.stringify({ topic, name, phone, email, message }),
+      }).then((r) => r.ok, () => false)
+    );
+  }
+
+  // Telegram Bot API.
   if (env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_CHAT_ID) {
-    const res = await fetch(
-      `https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`,
-      {
+    deliveries.push(
+      fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID, text }),
-      }
+      }).then((r) => r.ok, () => false)
     );
-    return res.ok ? json(200, { ok: true }) : json(502, { ok: false, error: "delivery" });
   }
 
   // Доставка не настроена — не притворяемся, что заявка ушла.
-  return json(500, { ok: false, error: "delivery not configured" });
+  if (deliveries.length === 0) {
+    return json(500, { ok: false, error: "delivery not configured" });
+  }
+
+  const results = await Promise.all(deliveries);
+  return results.some(Boolean)
+    ? json(200, { ok: true })
+    : json(502, { ok: false, error: "delivery" });
 };
