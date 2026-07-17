@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/ui";
-import { site } from "@/lib/site";
+import { company, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Пользовательское соглашение",
@@ -14,6 +14,7 @@ const sections = [
     h: "1. Предмет соглашения",
     p: [
       "Настоящее соглашение регулирует порядок использования сайта AUDIT D. Получая доступ к сайту, вы принимаете условия соглашения в полном объёме. Если вы не согласны с условиями, пожалуйста, не используйте сайт.",
+      `Владелец сайта и правообладатель его материалов — ${company.shortName}, ИНН ${company.inn}, ОГРН ${company.ogrn}. Адрес: ${company.address}.`,
     ],
   },
   {
@@ -43,6 +44,21 @@ const sections = [
   },
 ];
 
+// Email в тексте всегда рендерится рабочей mailto-ссылкой.
+function linkifyEmail(text: string) {
+  const parts = text.split(site.email);
+  return parts.flatMap((part, i) =>
+    i < parts.length - 1
+      ? [
+          part,
+          <a key={i} href={`mailto:${site.email}`} className="underline decoration-gold/60 underline-offset-2 hover:text-gold">
+            {site.email}
+          </a>,
+        ]
+      : [part]
+  );
+}
+
 export default function TermsPage() {
   return (
     <>
@@ -54,7 +70,7 @@ export default function TermsPage() {
               <h2 className="text-xl font-extrabold tracking-tight text-navy">{s.h}</h2>
               <div className="mt-3 space-y-3">
                 {s.p.map((t) => (
-                  <p key={t.slice(0, 24)} className="text-[0.98rem] leading-[1.8] text-graphite">{t}</p>
+                  <p key={t.slice(0, 24)} className="text-[0.98rem] leading-[1.8] text-graphite">{linkifyEmail(t)}</p>
                 ))}
               </div>
             </section>

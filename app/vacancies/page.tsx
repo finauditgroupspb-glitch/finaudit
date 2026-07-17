@@ -104,6 +104,38 @@ function CourierCard({ id }: { id?: string }) {
           </div>
           <span className="rounded-full bg-gold-pale px-4 py-2 text-[0.78rem] font-bold text-gold">Москва</span>
         </div>
+        <div className="mt-6 grid gap-8 sm:grid-cols-2">
+          <div>
+            <h4 className="text-[0.74rem] font-bold uppercase tracking-caps text-gold">Чем предстоит заниматься</h4>
+            <ul className="mt-4 space-y-3">
+              {[
+                "Доставка документов клиентам и в госорганы по Москве",
+                "Получение подписанных экземпляров и передача в офис",
+                "Согласование маршрута и времени с координатором",
+              ].map((item) => (
+                <li key={item} className="flex gap-2.5 text-[0.88rem] leading-relaxed text-graphite">
+                  <span className="mt-[8px] h-1.5 w-1.5 shrink-0 rounded-full bg-gold" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-[0.74rem] font-bold uppercase tracking-caps text-gold">Условия</h4>
+            <ul className="mt-4 space-y-3">
+              {[
+                "Гибкий график по договорённости, занятость неполная",
+                "Оплата обсуждается на собеседовании",
+                "Компенсация проезда по рабочим маршрутам",
+              ].map((item) => (
+                <li key={item} className="flex gap-2.5 text-[0.88rem] leading-relaxed text-graphite">
+                  <span className="mt-[8px] h-1.5 w-1.5 shrink-0 rounded-full bg-gold" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
         <div className="mt-8 border-t border-navy/8 pt-7">
           <h4 className="text-lg font-extrabold text-navy">Откликнуться на вакансию</h4>
           <div className="mt-5">
@@ -207,7 +239,11 @@ export default function VacanciesPage() {
                 <div className="max-w-xl">
                   <h3 className="text-2xl font-extrabold tracking-tight">Не нашли подходящую роль?</h3>
                   <p className="mt-3 text-[0.95rem] leading-relaxed text-silver/90">
-                    Пришлите резюме на {site.email} или напишите в Telegram — мы сохраняем контакты
+                    Пришлите резюме на{" "}
+                    <a href={`mailto:${site.email}`} className="underline decoration-gold/60 underline-offset-2 hover:text-gold-light">
+                      {site.email}
+                    </a>{" "}
+                    или напишите в Telegram — мы сохраняем контакты
                     сильных специалистов и возвращаемся, когда открывается подходящая позиция.
                   </p>
                 </div>

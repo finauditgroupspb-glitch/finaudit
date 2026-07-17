@@ -4,7 +4,7 @@ import ContactForm from "@/components/ContactForm";
 import Icon, { type IconName } from "@/components/icons";
 import { TelegramIcon } from "@/components/Header";
 import { PageHero } from "@/components/ui";
-import { site } from "@/lib/site";
+import { company, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Контакты",
@@ -77,12 +77,29 @@ export default function ContactsPage() {
                     </div>
                   </div>
 
-                  <div className="mt-auto border-t border-white/10 pt-8">
-                    <p className="text-[0.78rem] font-semibold text-silver/70">География</p>
-                    <p className="mt-1.5 text-[0.95rem] leading-relaxed text-silver">
-                      {site.city}, Россия · работаем дистанционно с клиентами по всей России,
-                      в Казахстане, Беларуси, Армении и Кыргызстане.
-                    </p>
+                  <div className="mt-auto space-y-6 border-t border-white/10 pt-8">
+                    <div>
+                      <p className="text-[0.78rem] font-semibold text-silver/70">Адрес офиса</p>
+                      <p className="mt-1.5 text-[0.95rem] leading-relaxed text-silver">{company.address}</p>
+                      <a
+                        href={`https://yandex.ru/maps/?text=${encodeURIComponent(company.address)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="link-underline mt-2 inline-block text-[0.86rem] font-bold text-gold-light hover:text-white"
+                      >
+                        Открыть на Яндекс.Картах →
+                      </a>
+                      <p className="mt-3 text-[0.84rem] text-silver/70">
+                        В Москве открывается филиал — о начале его работы объявим на сайте.
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[0.78rem] font-semibold text-silver/70">География</p>
+                      <p className="mt-1.5 text-[0.95rem] leading-relaxed text-silver">
+                        {site.city}, Россия · работаем дистанционно с клиентами по всей России,
+                        в Казахстане, Беларуси, Армении и Кыргызстане.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

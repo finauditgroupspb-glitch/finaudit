@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/ui";
-import { site } from "@/lib/site";
+import { company, site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Политика конфиденциальности",
@@ -11,10 +11,11 @@ export const metadata: Metadata = {
 
 const sections = [
   {
-    h: "1. Общие положения",
+    h: "1. Общие положения и оператор персональных данных",
     p: [
       "Настоящая политика определяет порядок обработки и защиты персональных данных посетителей сайта AUDIT D. Используя сайт и отправляя формы, вы соглашаетесь с условиями настоящей политики.",
-      "Обработка персональных данных осуществляется в соответствии с законодательством Российской Федерации о персональных данных.",
+      `Оператор персональных данных — ${company.shortName}, ИНН ${company.inn}, ОГРН ${company.ogrn}. Адрес: ${company.address}. Контакт для обращений по вопросам персональных данных: ${site.email}.`,
+      "Обработка персональных данных осуществляется в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных» и иным законодательством Российской Федерации.",
     ],
   },
   {
@@ -49,6 +50,21 @@ const sections = [
   },
 ];
 
+// Email в тексте всегда рендерится рабочей mailto-ссылкой.
+function linkifyEmail(text: string) {
+  const parts = text.split(site.email);
+  return parts.flatMap((part, i) =>
+    i < parts.length - 1
+      ? [
+          part,
+          <a key={i} href={`mailto:${site.email}`} className="underline decoration-gold/60 underline-offset-2 hover:text-gold">
+            {site.email}
+          </a>,
+        ]
+      : [part]
+  );
+}
+
 export default function PrivacyPage() {
   return (
     <>
@@ -60,13 +76,16 @@ export default function PrivacyPage() {
               <h2 className="text-xl font-extrabold tracking-tight text-navy">{s.h}</h2>
               <div className="mt-3 space-y-3">
                 {s.p.map((t) => (
-                  <p key={t.slice(0, 24)} className="text-[0.98rem] leading-[1.8] text-graphite">{t}</p>
+                  <p key={t.slice(0, 24)} className="text-[0.98rem] leading-[1.8] text-graphite">{linkifyEmail(t)}</p>
                 ))}
               </div>
             </section>
           ))}
           <p className="border-t border-navy/10 pt-8 text-[0.88rem] text-graphite/70">
-            Вопросы по обработке персональных данных: {site.email}
+            Вопросы по обработке персональных данных:{" "}
+            <a href={`mailto:${site.email}`} className="underline decoration-gold/60 underline-offset-2 hover:text-gold">
+              {site.email}
+            </a>
           </p>
         </div>
       </section>

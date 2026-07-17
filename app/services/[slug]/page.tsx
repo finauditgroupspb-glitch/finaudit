@@ -8,14 +8,15 @@ import { Eyebrow, PageHero, SectionTitle } from "@/components/ui";
 import { services } from "@/lib/data";
 import { site } from "@/lib/site";
 
-type Props = { params: { slug: string } };
+type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
 }
 
-export function generateMetadata({ params }: Props): Metadata {
-  const service = services.find((s) => s.slug === params.slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const service = services.find((s) => s.slug === slug);
   if (!service) return {};
   return {
     title: service.name,
@@ -25,8 +26,9 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-export default function ServicePage({ params }: Props) {
-  const service = services.find((s) => s.slug === params.slug);
+export default async function ServicePage({ params }: Props) {
+  const { slug } = await params;
+  const service = services.find((s) => s.slug === slug);
   if (!service) notFound();
 
   const others = services.filter((s) => s.slug !== service.slug).slice(0, 3);
@@ -48,11 +50,21 @@ export default function ServicePage({ params }: Props) {
       acceptedAnswer: { "@type": "Answer", text: f.a },
     })),
   };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Главная", item: site.url },
+      { "@type": "ListItem", position: 2, name: "Услуги", item: `${site.url}/services` },
+      { "@type": "ListItem", position: 3, name: service.name, item: `${site.url}/services/${service.slug}` },
+    ],
+  };
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <PageHero variant="beams" eyebrow="Услуга" title={service.name} lead={service.lead}>
         <Link
@@ -66,9 +78,18 @@ export default function ServicePage({ params }: Props) {
 
       {/* Описание + для кого */}
       <section className="sheet bg-white py-20 lg:py-24">
+        <div className="mx-auto max-w-site px-5 lg:px-8">
+          <nav className="mb-10 text-[0.82rem] font-semibold text-graphite/60" aria-label="Хлебные крошки">
+            <Link href="/" className="link-underline hover:text-navy">Главная</Link>
+            <span className="mx-2" aria-hidden="true">/</span>
+            <Link href="/services" className="link-underline hover:text-navy">Услуги</Link>
+            <span className="mx-2" aria-hidden="true">/</span>
+            <span className="text-navy">{service.name}</span>
+          </nav>
+        </div>
         <div className="mx-auto grid max-w-site gap-14 px-5 lg:grid-cols-[1.5fr_1fr] lg:px-8">
           <Reveal variant="left">
-            <Eyebrow>О услуге</Eyebrow>
+            <Eyebrow>Об услуге</Eyebrow>
             <div className="mt-6 space-y-5 text-[1.05rem] leading-relaxed text-graphite/90">
               {service.intro.map((p) => (
                 <p key={p.slice(0, 24)}>{p}</p>

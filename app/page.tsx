@@ -93,39 +93,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ——— ВАКАНСИЯ КУРЬЕРА В МОСКВЕ ——— */}
-      <section className="sheet bg-white py-10 lg:py-14">
-        <div className="mx-auto max-w-site px-5 lg:px-8">
-          <Reveal>
-            <div className="spot spot-border relative overflow-hidden rounded-3xl border border-gold/25 bg-gold-pale/45 p-7 shadow-card lg:p-10">
-              <div className="ledger-grid pointer-events-none absolute inset-0 opacity-30" aria-hidden="true" />
-              <div
-                className="hero-glow absolute -right-24 -top-28 h-[280px] w-[280px] rounded-full opacity-50"
-                style={{ background: "radial-gradient(circle, rgba(184,150,62,0.22), transparent 65%)" }}
-                aria-hidden="true"
-              />
-              <div className="relative flex flex-col items-start gap-7 lg:flex-row lg:items-center lg:justify-between">
-                <div className="max-w-3xl">
-                  <h2 className="text-2xl font-extrabold leading-tight tracking-tight text-navy md:text-3xl">
-                    Ищем курьеров по доставке документов в Москве
-                  </h2>
-                  <p className="mt-3 text-[0.98rem] leading-relaxed text-graphite/85">
-                    В связи с открытием нового филиала мы набираем курьеров по доставке документов.
-                  </p>
-                </div>
-                <Link
-                  href="/vacancies#courier-moscow"
-                  data-magnetic
-                  className="btn-sheen shrink-0 rounded-full bg-navy px-7 py-3.5 text-center text-[0.9rem] font-extrabold text-white transition-all hover:-translate-y-0.5 hover:bg-navy-soft"
-                >
-                  Откликнуться на вакансию
-                </Link>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* ——— ПРЕИМУЩЕСТВА ——— */}
       <section className="sheet bg-white py-20 lg:py-28">
         <div className="mx-auto max-w-site px-5 lg:px-8">

@@ -58,10 +58,12 @@ export default function CountUp({
 
   if (Number.isNaN(target)) return <span className={className}>{value}</span>;
 
+  // В серверном HTML сразу финальное значение: поисковики и посетители без JS
+  // никогда не увидят «0», анимация запускается поверх при попадании в вьюпорт.
   return (
     <span className={`tabular-nums ${className}`}>
       {prefix}
-      <span ref={ref}>0</span>
+      <span ref={ref}>{format(target)}</span>
       {suffix}
     </span>
   );

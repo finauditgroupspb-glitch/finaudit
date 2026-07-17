@@ -15,14 +15,6 @@ export const metadata: Metadata = {
     template: "%s — AUDIT D",
   },
   description: site.description,
-  keywords: [
-    "аудит",
-    "бухгалтерское сопровождение",
-    "налоговый консалтинг",
-    "юридическое сопровождение бизнеса",
-    "аудиторская компания",
-    "AUDIT D",
-  ],
   alternates: { canonical: "/" },
   icons: { icon: "/favicon.svg?v=2" },
   openGraph: {
@@ -32,11 +24,13 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: "AUDIT D — аудит, бухгалтерия и налоговый консалтинг",
     description: site.description,
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "AUDIT D — аудит, бухгалтерия, налоги и право" }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "AUDIT D",
     description: site.description,
+    images: ["/og.png"],
   },
   robots: { index: true, follow: true },
 };

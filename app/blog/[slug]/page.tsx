@@ -7,14 +7,15 @@ import { CTASection } from "@/components/ui";
 import { posts } from "@/lib/data";
 import { site } from "@/lib/site";
 
-type Props = { params: { slug: string } };
+type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata({ params }: Props): Metadata {
-  const post = posts.find((p) => p.slug === params.slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const post = posts.find((p) => p.slug === slug);
   if (!post) return {};
   return {
     title: post.title,
@@ -24,8 +25,9 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-export default function BlogPostPage({ params }: Props) {
-  const post = posts.find((p) => p.slug === params.slug);
+export default async function BlogPostPage({ params }: Props) {
+  const { slug } = await params;
+  const post = posts.find((p) => p.slug === slug);
   if (!post) notFound();
 
   const related = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
@@ -41,10 +43,20 @@ export default function BlogPostPage({ params }: Props) {
     publisher: { "@type": "Organization", name: site.name, url: site.url },
     mainEntityOfPage: `${site.url}/blog/${post.slug}`,
   };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Главная", item: site.url },
+      { "@type": "ListItem", position: 2, name: "Блог", item: `${site.url}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: `${site.url}/blog/${post.slug}` },
+    ],
+  };
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       <article>
         <header className="relative overflow-hidden bg-navy-deep pb-16 pt-36 text-white lg:pb-20 lg:pt-44">
