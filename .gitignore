@@ -1,0 +1,16 @@
+# Зависимости
+node_modules/
+
+# Сборка Next.js
+.next/
+out/
+tsconfig.tsbuildinfo
+
+# Переменные окружения с секретами
+.env
+.env.local
+.env*.local
+
+# Прочее
+npm-debug.log*
+.DS_Store

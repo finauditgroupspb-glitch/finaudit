@@ -22,7 +22,7 @@ export const company = {
 export const site = {
   name: "AUDIT D",
   legalName: company.shortName,
-  url: "https://finauditgroup.example",
+  url: "https://audit-d.ru",
   description:
     "Аудит, бухгалтерское сопровождение, налоговый и юридический консалтинг для бизнеса в России и странах СНГ.",
   email: "finauditgroupspb@gmail.com",

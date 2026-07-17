@@ -20,7 +20,7 @@
 ```env
 # Допустимые публичные origin через запятую
 TRUST_PROXY_HEADERS=true
-ALLOWED_ORIGINS=https://example.ru,https://www.example.ru
+ALLOWED_ORIGINS=https://audit-d.ru,https://www.audit-d.ru
 
 # Вариант 1: ваш защищённый webhook / CRM
 CONTACT_WEBHOOK_URL=https://crm.example.ru/hooks/contact
