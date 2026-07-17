@@ -6,8 +6,8 @@ type LogoProps = {
 
 /**
  * Фирменный знак AUDIT D.
- * Высокохудожественная монограмма "AD": 
- * Изящная классическая "A" с засечками и переплетенная с ней золотая "D".
+ * Классическая монограмма "AD": строгая serif-буква A (синяя/белая)
+ * поверх крупной золотой D с анимированным переливом золота и синевы.
  */
 export function LogoMark({
   tone = "light",
@@ -17,7 +17,6 @@ export function LogoMark({
   size?: number;
 }) {
   const primary = tone === "light" ? "#FFFFFF" : "#0B1D33";
-  const accent = "#B8963E";
 
   return (
     <svg
@@ -28,89 +27,73 @@ export function LogoMark({
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      {/* Буква "A" (классическая, с тонкими и толстыми линиями и засечками) */}
-      <g>
-        {/* Левый тонкий штрих А */}
-        <path
-          d="M 40 75 L 53 31"
-          stroke={primary}
-          strokeWidth="3"
-          strokeLinecap="round"
-        />
-        {/* Правый мощный штрих А (с расширением книзу) */}
-        <path
-          d="M 51.5 29 L 66.5 73.5"
-          stroke={primary}
-          strokeWidth="7.5"
-          strokeLinecap="round"
-        />
-        {/* Горизонтальный перешеек А */}
-        <path
-          d="M 43.5 61 H 58.5"
-          stroke={primary}
-          strokeWidth="3"
-          strokeLinecap="round"
-        />
-        {/* Нижняя левая засечка А */}
-        <path
-          d="M 35 75 H 45"
-          stroke={primary}
-          strokeWidth="2.5"
-          strokeLinecap="round"
-        />
-        {/* Нижняя правая засечка А */}
-        <path
-          d="M 60 75 H 72"
-          stroke={primary}
-          strokeWidth="2.5"
-          strokeLinecap="round"
-        />
-        {/* Верхняя засечка А */}
-        <path
-          d="M 48 31 H 55"
-          stroke={primary}
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-      </g>
+      <defs>
+        {/* Переливающийся градиент: золото → блик → золото → глубокий синий */}
+        <linearGradient
+          id="adGoldShimmer"
+          gradientUnits="userSpaceOnUse"
+          x1="0"
+          y1="20"
+          x2="100"
+          y2="80"
+        >
+          <stop offset="0" stopColor="#B8963E" />
+          <stop offset="0.25" stopColor="#EAD28C" />
+          <stop offset="0.5" stopColor="#B8963E" />
+          <stop offset="0.75" stopColor="#0B1D33" />
+          <stop offset="1" stopColor="#B8963E" />
+          <animateTransform
+            attributeName="gradientTransform"
+            type="translate"
+            values="-100 0; 100 0"
+            dur="6s"
+            repeatCount="indefinite"
+          />
+        </linearGradient>
+      </defs>
 
-      {/* Золотая буква "D" (изящная округлая арка, переплетающаяся с А) */}
-      <path
-        d="M 52.5 35 C 57 35 78 35 78 54.5 C 78 71.5 59.5 74.5 54.5 74.5"
-        stroke={accent}
-        strokeWidth="4.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      {/* Верхний декоративный хвостик D */}
-      <path
-        d="M 48 37 C 50 35.5 53 35 56 35"
-        stroke={accent}
-        strokeWidth="3.5"
-        strokeLinecap="round"
-      />
+      {/* Золотая D — крупная, позади буквы A */}
+      <text
+        x="34"
+        y="79"
+        fontFamily="Georgia, 'Times New Roman', serif"
+        fontSize="78"
+        fill="url(#adGoldShimmer)"
+      >
+        D
+      </text>
+
+      {/* Синяя (или белая) A — поверх, с наложением на D */}
+      <text
+        x="2"
+        y="79"
+        fontFamily="Georgia, 'Times New Roman', serif"
+        fontSize="78"
+        fill={primary}
+      >
+        A
+      </text>
     </svg>
   );
 }
 
 export default function Logo({ variant = "dark", compact = false, className = "" }: LogoProps) {
   const text = variant === "light" ? "text-white" : "text-[#0B1D33]";
-  const sub = variant === "light" ? "text-silver/80" : "text-[#B8963E]";
 
   return (
-    <span className={`inline-flex items-center gap-2 ${className}`}>
+    <span className={`inline-flex items-center gap-2.5 ${className}`}>
       {/* Логознак (монограмма AD) */}
       <LogoMark tone={variant === "light" ? "light" : "dark"} size={compact ? 44 : 54} />
-      
+
       {/* Текстовая часть */}
       {!compact && (
         <span className="flex flex-col justify-center select-none" style={{ fontFamily: 'Georgia, serif' }}>
-          {/* Главное название (Элегантный serif-шрифт) */}
+          {/* Главное название: AUDIT синим/белым, D — с золотым переливом */}
           <span className={`text-[1.35rem] font-medium tracking-[0.05em] leading-tight ${text}`}>
-            AUDIT <span className="text-[#B8963E]">D</span>
+            AUDIT <span className="logo-shimmer-gold font-semibold">D</span>
           </span>
-          {/* Подзаголовок (Золотой, с большим межбуквенным интервалом) */}
-          <span className={`text-[0.55rem] font-semibold uppercase tracking-[0.22em] leading-none mt-1 ${sub}`}>
+          {/* Подзаголовок (золотой, с большим межбуквенным интервалом) */}
+          <span className="text-[0.55rem] font-semibold uppercase tracking-[0.22em] leading-none mt-1 text-[#B8963E]">
             AUDIT COMPANY
           </span>
         </span>

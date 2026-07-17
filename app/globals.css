@@ -441,6 +441,24 @@ html[data-intro] .preloader {
   to { background-position: -20% 0; }
 }
 
+/* Перелив золота с синевой для буквы D в логотипе */
+.logo-shimmer-gold {
+  background: linear-gradient(
+    110deg,
+    var(--gold) 15%,
+    #ead28c 35%,
+    var(--gold) 55%,
+    var(--navy) 75%,
+    var(--gold) 95%
+  );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--gold);
+  animation: shimmer-x 7s linear infinite;
+}
+
 /* ═══════════════ Animated gradient hairlines ═══════════════ */
 .hairline-gold {
   height: 1px;
@@ -884,7 +902,7 @@ summary:focus-visible {
   .reveal { opacity: 1; transform: none; filter: none; transition: none; }
   .reveal .eyebrow-line::before { transform: none; transition: none; }
   .hero-up, .hero-glow, .hero-glow-slow, .check-circle, .check-mark,
-  .page-enter, .float-a, .float-b, .float-c, .text-shimmer, .hairline-gold,
+  .page-enter, .float-a, .float-b, .float-c, .text-shimmer, .logo-shimmer-gold, .hairline-gold,
   .glow-card::before, .btn-sheen::after, .pt, .amb-orbit, .amb-beam,
   .amb-run, .amb-run-v, .amb-dash, .amb-pulse-c, .amb-twinkle, .amb-wave-path,
   .fab-ping::before, .poster-scan, .scroll-cue::after, .preloader,

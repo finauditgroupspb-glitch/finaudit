@@ -1,6 +1,4 @@
-<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="9" y="6" width="5" height="36" fill="#0B1D33"/>
-  <rect x="9" y="6" width="27" height="5" fill="#0B1D33"/>
-  <path d="M9 37.5 L33.5 15 L37 18.8 L12.5 41.3 Z" fill="#B8963E"/>
-  <rect x="31" y="6" width="5" height="11" fill="#0B1D33" opacity="0.45"/>
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <text x="16" y="38" font-family="Georgia, 'Times New Roman', serif" font-size="38" fill="#B8963E">D</text>
+  <text x="1" y="38" font-family="Georgia, 'Times New Roman', serif" font-size="38" fill="#0B1D33">A</text>
 </svg>
